@@ -131,6 +131,7 @@ section p{
 }
 
 #add-book-form{
+    display: none;
     background-color: rgb(255, 255, 255);
     min-width: 350px;
     max-width: 500px;

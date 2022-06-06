@@ -4,10 +4,20 @@ let pagesRead = document.querySelectorAll('.pages-read');
 let totalPages = document.querySelectorAll('.total-pages');
 let hasBeenRead = document.querySelectorAll('.has-been-read');
 
-const addBook = document.querySelector('#addBook');
-const delBook = document.querySelectorAll('.delete-book');
+const addBook = document.querySelector('#add-book');
+const closePopUp = document.querySelector('#close-pop-up')
+const editBook = document.querySelectorAll('.delete-book');
 
 const addBookForm = document.querySelector('#add-book-form');
+
+
+addBook.addEventListener('mousedown', function(){
+    addBookForm.style.display = 'block';
+})
+
+closePopUp.addEventListener('mousedown', function(){
+    addBookForm.style.display = 'none';
+})
 
 let myLibrary = [{
     name: 'The Hobbit',
@@ -48,5 +58,12 @@ function clearForm(form, number){
     for(let i = 0; i < number; i++){
         form[i].value = '';
     }
+}
+
+function createCard(){
+    const newBookCard = document.createElement('li');
+    const cardHeader = document.createElement('div');
+    cardHeader.innerHTML = '<div><h2 class="book-title">The Hobbit</h2><span class="author-name">By J.R.R Tolkien</span></div><span class="material-symbols-outlined dark delete-book">edit_note</span>'
+    
 }
 
