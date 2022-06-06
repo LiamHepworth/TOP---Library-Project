@@ -25,26 +25,28 @@ function Book(name, author, imageLink, pages, isRead) {
     this.isRead = isRead;
 }
 
-const theGulagArchipelago = new Book('The Gulag Archipelago', 'Aleksandr Solzhenitsyn', undefined, 498, false )
+addBookForm.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    addBookToLibrary(new Book(addBookForm[0].value, addBookForm[1].value, addBookForm[2].value, addBookForm[3].value, isRead()))
+    clearForm(addBookForm, 5)   
+})
 
 function addBookToLibrary(bookName) {
     myLibrary.push(bookName);
     console.log(bookName.author)
 };
 
-addBookToLibrary(theGulagArchipelago);
+function isRead(){
+    if(addBookForm[4].checked){
+        return true
+    } else if(addBookForm[5].checked){
+        return false
+    };
+};
 
-// addBookForm.addEventListener('submit', (event) =>{
-//     event.preventDefault();
-//     console.log('data has been submitted')
-//     for(let i = 0; i < 5; i++){
-//         console.log(addBookForm[i].value)
-//     }
-// })
+function clearForm(form, number){
+    for(let i = 0; i < number; i++){
+        form[i].value = '';
+    }
+}
 
-addBookForm.addEventListener('submit', (event) =>{
-    event.preventDefault();
-
-    let newBook = new Book(addBookForm[0].value, addBookForm[1].value, addBookForm[2].value, addBookForm[3].value, addBookForm[4].value);
-    console.log(newBook);
-})
