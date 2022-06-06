@@ -21,11 +21,11 @@ function Book(name, author, imageLink, pages, pagesRead, isRead) {
     this.author = author;
     this.image = imageLink
     this.totalPages = pages;
-    this.pagesRead = pagesRead;
+    // this.pagesRead = pagesRead;
     this.isRead = isRead;
 }
 
-const theGulagArchipelago = new Book('The Gulag Archipelago', 'Aleksandr Solzhenitsyn', undefined, 498, 360, false )
+const theGulagArchipelago = new Book('The Gulag Archipelago', 'Aleksandr Solzhenitsyn', undefined, 498, /*360,*/ false )
 
 function addBookToLibrary(bookName) {
     myLibrary.push(bookName);
