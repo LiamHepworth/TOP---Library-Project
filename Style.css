@@ -169,6 +169,12 @@ section p{
     margin: 1rem auto;
 }
 
+.radio-buttons{
+    display: inline-block;
+    width: 350px;
+    margin: auto;
+}
+
 #add-book-form input[type = submit]{
     background: rgb(214, 230, 235);
 	border: none;
@@ -176,4 +182,23 @@ section p{
     padding: .5rem 1rem;
     border-radius: 3px;
     margin-right: 1.4rem;
+}
+
+.span-misc{
+    display: block;
+    width: 90%;
+    margin: 1rem auto;
+    text-align: left;
+}
+
+#radios{
+    display: inline-block;
+    text-align: left;
+    margin: auto auto 1rem 1.4rem;
+    width: 100%;
+    /* background-color: red; */
+}
+
+#radios input[type = radio]{
+    margin-right: 3rem;
 }
