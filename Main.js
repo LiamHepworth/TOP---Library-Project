@@ -39,7 +39,7 @@ function Book(name, author, imageLink, pages, isRead) {
 
 addBookForm.addEventListener('submit', (event) =>{
     event.preventDefault();
-    addBookToLibrary(new Book(addBookForm[0].value, addBookForm[1].value, addBookForm[2].value, addBookForm[3].value, isRead()))
+    createCardElement()
     clearForm(addBookForm, 5)   
 })
 
@@ -57,31 +57,63 @@ function isRead(){
 };
 
 function createCardElement(){
+
+    let newBook = new Book(addBookForm[0].value, addBookForm[1].value, addBookForm[2].value, addBookForm[3].value, isRead())
+    addBookToLibrary(newBook)
+
     const newBookCard = document.createElement('li');
     newBookCard.className = 'book-card';
     
     const cardHeader = document.createElement('div');
-    newBookCard.appendChild(cardHeader);
-    
-    const bookTitle = document.createElement('h2');
-    const authorTitle = document.createElement('span');
-    const newEditButton = document.createElement('span');
-    cardHeader.append(bookTitle, authorTitle, newEditButton);
-    
-    const bookImage = document.createElement('img');
-    newBookCard.appendChild(bookImage);
-    
-    const bookInfo = document.createElement('div');
-    newBookCard.appendChild(bookInfo);
-    
-    const newBookPages = document.createElement('span');
-    const newBookHasBeenRead = document.createElement('span');
-    newBookCard.append(newBookPages, newBookHasBeenRead );
-    
-    bookCarousel.append(newBookCard);
-}
+    cardHeader.className = 'book-card-header'
+        
+        const nameTitleAuthorTitle = document.createElement('div');
 
-createCardElement()
+            const bookTitle = document.createElement('h2');
+            bookTitle.className = 'book-title';
+            bookTitle.innerText = newBook.name;
+        
+            const authorTitle = document.createElement('span');
+            authorTitle.className = 'author-name'
+            authorTitle.innerText = newBook.author;
+    
+        const newEditButton = document.createElement('span');
+        newEditButton.innerText = 'edit_note'
+        newEditButton.className = 'material-symbols-outlined dark delete-book'
+        
+    const bookImage = document.createElement('img');
+    bookImage.src = newBook.image;
+    bookImage.alt = `Book cover for ${newBook.name}`
+    bookImage.className = 'book-image'
+        
+    const bookInfo = document.createElement('div'); 
+    bookInfo.className = 'book-info' 
+        const newBookPages = document.createElement('span');
+        newBookPages.innerText = `Pages: ${newBook.totalPages}`;
+        newBookPages.className = 'pages-read';
+        const newBookHasBeenRead = document.createElement('span');
+        newBookHasBeenRead.innerText = newBook.isRead;
+        newBookHasBeenRead.className = 'has-been-read';
+
+        if(newBook.isRead === true){
+            newBookHasBeenRead.innerText = 'Completed';
+            newBookHasBeenRead.style.backgroundColor = 'green'
+        } else if(newBook.isRead === false){
+            newBookHasBeenRead.innerText = 'To read'
+            newBookHasBeenRead.style.backgroundColor = 'yellow'
+        };
+
+    nameTitleAuthorTitle.append(bookTitle, authorTitle);
+    cardHeader.append(nameTitleAuthorTitle, newEditButton);
+    newBookCard.appendChild(cardHeader);
+
+    newBookCard.appendChild(bookImage);
+
+    bookInfo.append(newBookPages, newBookHasBeenRead);
+    newBookCard.appendChild(bookInfo);
+
+    bookCarousel.append(newBookCard);
+};
 
 function clearForm(form, numberOfArgs){
     for(let i = 0; i < numberOfArgs; i++){
