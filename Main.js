@@ -61,7 +61,7 @@ function createCardElement(){
     let newBook = new Book(addBookForm[0].value, addBookForm[1].value, addBookForm[2].value, addBookForm[3].value, isRead())
     addBookToLibrary(newBook)
 
-    const newBookCard = document.createElement('li');
+    const newBookCard = document.createElement('li');                    //create the card div
     newBookCard.className = 'book-card';
     
     const cardHeader = document.createElement('div');
@@ -81,12 +81,18 @@ function createCardElement(){
         newEditButton.innerText = 'edit_note'
         newEditButton.className = 'material-symbols-outlined dark delete-book'
         
-    const bookImage = document.createElement('img');
-    bookImage.src = newBook.image;
-    bookImage.alt = `Book cover for ${newBook.name}`
+    const bookImage = document.createElement('img');                       //add the image
     bookImage.className = 'book-image'
+        if(newBook.image === 'none' || newBook.image === ''){
+            onerror = bookImage.style.backgroundColor = 'lightgrey';
+            onerror = bookImage.style.border = '1px solid black'
+            onerror = bookImage.alt = '';
+        } else {
+            bookImage.src = newBook.image;
+            bookImage.alt = `Book cover for ${newBook.name}`
+        }
         
-    const bookInfo = document.createElement('div'); 
+    const bookInfo = document.createElement('div');                        //add footer/info section
     bookInfo.className = 'book-info' 
         const newBookPages = document.createElement('span');
         newBookPages.innerText = `Pages: ${newBook.totalPages}`;
@@ -103,7 +109,7 @@ function createCardElement(){
             newBookHasBeenRead.style.backgroundColor = 'yellow'
         };
 
-    nameTitleAuthorTitle.append(bookTitle, authorTitle);
+    nameTitleAuthorTitle.append(bookTitle, authorTitle);                    //append all previously created elements to the card
     cardHeader.append(nameTitleAuthorTitle, newEditButton);
     newBookCard.appendChild(cardHeader);
 
