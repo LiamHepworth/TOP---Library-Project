@@ -68,11 +68,9 @@ function createCardElement(){
     cardHeader.className = 'book-card-header'
         
         const nameTitleAuthorTitle = document.createElement('div');
-
             const bookTitle = document.createElement('h2');
             bookTitle.className = 'book-title';
             bookTitle.innerText = newBook.name;
-        
             const authorTitle = document.createElement('span');
             authorTitle.className = 'author-name'
             authorTitle.innerText = newBook.author;
@@ -111,13 +109,8 @@ function createCardElement(){
 
     nameTitleAuthorTitle.append(bookTitle, authorTitle);                    //append all previously created elements to the card
     cardHeader.append(nameTitleAuthorTitle, newEditButton);
-    newBookCard.appendChild(cardHeader);
-
-    newBookCard.appendChild(bookImage);
-
     bookInfo.append(newBookPages, newBookHasBeenRead);
-    newBookCard.appendChild(bookInfo);
-
+    newBookCard.append(cardHeader, bookImage, bookInfo);
     bookCarousel.append(newBookCard);
 };
 
