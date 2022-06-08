@@ -79,9 +79,9 @@ function createCardElement(){
         newEditButton.innerText = 'edit_note'
         newEditButton.className = 'material-symbols-outlined dark delete-book'
         
-    const bookImage = document.createElement('img');                       //add the image
-    bookImage.className = 'book-image'
-        if(newBook.image === 'none' || newBook.image === ''){
+    const bookImage = document.createElement('img');                       //add the image: 
+    bookImage.className = 'book-image'                                     //Isn't perfect code as it just checks if string is a valid URL, not if it points to an image, may need more work later on. 
+        if(!isValidHttpUrl(newBook.image)){
             onerror = bookImage.style.backgroundColor = 'lightgrey';
             onerror = bookImage.style.border = '1px solid black'
             onerror = bookImage.alt = '';
@@ -114,8 +114,20 @@ function createCardElement(){
     bookCarousel.append(newBookCard);
 };
 
-function clearForm(form, numberOfArgs){
-    for(let i = 0; i < numberOfArgs; i++){
+function clearForm(form, numberOfElements){
+    for(let i = 0; i < numberOfElements; i++){
         form[i].value = '';
     }
 }
+
+function isValidHttpUrl(string) {         //checks if a string is a valid HTTP URL
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
