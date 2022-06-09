@@ -1,13 +1,8 @@
-// let bookName = document.querySelectorAll('.book-title');
-// let authorName = document.querySelectorAll('.author-name');
-// let pagesRead = document.querySelectorAll('.pages-read');
-// let totalPages = document.querySelectorAll('.total-pages');
-// let hasBeenRead = document.querySelectorAll('.has-been-read');
 let bookCarousel = document.querySelector('.carousel')
 
-const addBook = document.querySelector('#add-book');
-const closePopUp = document.querySelector('#close-pop-up')
-const editBook = document.querySelectorAll('.delete-book');
+const addBookButton = document.querySelector('#add-book');
+const closeNewBookFormButton = document.querySelector('#close-pop-up')
+const deleteBookButton = document.querySelectorAll('.delete-book');
 
 const addBookForm = document.querySelector('#add-book-form');
 const editBookForm = document.querySelector('#edit-book-form');
@@ -22,16 +17,16 @@ let myLibrary = [{
 
 //opening and closing add book dialogue
 
-addBook.addEventListener('mousedown', function(){
+addBookButton.addEventListener('mousedown', function(){
     addBookForm.style.display = 'block';
 })
 
-editBook.addEventListener('mousedown', function(){
-    editBookForm.style.display = 'block';
+// deleteBook.addEventListener('mousedown', function(){
+//     editBookForm.style.display = 'block';
 
-})
+// })
 
-closePopUp.addEventListener('mousedown', function(){
+closeNewBookFormButton.addEventListener('mousedown', function(){
     addBookForm.style.display = 'none';
     editBookForm.style.display = 'none';
 })
@@ -75,17 +70,17 @@ function createCardElement(){
     const cardHeader = document.createElement('div');
     cardHeader.className = 'book-card-header'
         
-        const nameTitleAuthorTitle = document.createElement('div');
-            const bookTitle = document.createElement('h2');
-            bookTitle.className = 'book-title';
-            bookTitle.innerText = newBook.name;
+        const bookNameAuthorTitle = document.createElement('div');
+            const BookName = document.createElement('h2');
+            BookName.className = 'book-title';
+            BookName.innerText = newBook.name;
             const authorTitle = document.createElement('span');
             authorTitle.className = 'author-name'
             authorTitle.innerText = newBook.author;
     
-        const newEditButton = document.createElement('span');
-        newEditButton.innerText = 'edit_note'
-        newEditButton.className = 'material-symbols-outlined dark delete-book'
+        const newDeleteButton = document.createElement('span');
+        newDeleteButton.innerText = 'delete'
+        newDeleteButton.className = 'material-symbols-outlined dark delete-book'
         
     const bookImage = document.createElement('img');                       //add the image: 
     bookImage.className = 'book-image'                                     //Isn't perfect code as it just checks if string is a valid URL, not if it points to an image, may need more work later on. 
@@ -102,21 +97,21 @@ function createCardElement(){
     bookInfo.className = 'book-info' 
         const newBookPages = document.createElement('span');
         newBookPages.innerText = `Pages: ${newBook.totalPages}`;
-        newBookPages.className = 'pages-read';
+        newBookPages.className = 'num-of-pages';
         const newBookHasBeenRead = document.createElement('span');
         newBookHasBeenRead.innerText = newBook.isRead;
         newBookHasBeenRead.className = 'has-been-read';
 
         if(newBook.isRead === true){
-            newBookHasBeenRead.innerText = 'Completed';
+            newBookHasBeenRead.innerText = 'Completed';     //this will need changing ass we add click to change read colour function
             newBookHasBeenRead.style.backgroundColor = 'green'
         } else if(newBook.isRead === false){
             newBookHasBeenRead.innerText = 'To read'
             newBookHasBeenRead.style.backgroundColor = 'yellow'
         };
 
-    nameTitleAuthorTitle.append(bookTitle, authorTitle);                    //append all previously created elements to the card
-    cardHeader.append(nameTitleAuthorTitle, newEditButton);
+    bookNameAuthorTitle.append(BookName, authorTitle);                    //append all previously created elements to the card
+    cardHeader.append(bookNameAuthorTitle, newDeleteButton);
     bookInfo.append(newBookPages, newBookHasBeenRead);
     newBookCard.append(cardHeader, bookImage, bookInfo);
     bookCarousel.append(newBookCard);
@@ -139,3 +134,11 @@ function isValidHttpUrl(string) {         //checks if a string is a valid HTTP U
   
     return url.protocol === "http:" || url.protocol === "https:";
 }
+
+function changeReadStatus(){
+    for(let i = 0; i < bookCarousel.children.length; i++){
+        let readBtn = bookCarousel.children[i].children[2].children[1];
+    };
+};
+
+// bookCarousel.children[1].children[2].children[1] - this is the delete button for each node

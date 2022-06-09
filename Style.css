@@ -44,20 +44,9 @@ section p{
   font-weight: 700;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 700,
-  'GRAD' -25,
-  'opsz' 48;
-  height: auto;
-  margin: auto 0;
-  font-size: 24pt;
-  font-weight: 700;
-}
-
 .dark{
     color: black;
+    font-size: 24px;
 }
 
 #carousel-title{
@@ -127,7 +116,7 @@ section p{
     padding: 0.5rem;
     width: 50%;
     border-radius: 3px;
-    background-color: rgb(214, 205, 25);
+    background-color: rgb(25, 214, 110);
 }
 
 #add-book-form{
