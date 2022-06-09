@@ -10,6 +10,7 @@ const closePopUp = document.querySelector('#close-pop-up')
 const editBook = document.querySelectorAll('.delete-book');
 
 const addBookForm = document.querySelector('#add-book-form');
+const editBookForm = document.querySelector('#edit-book-form');
 
 let myLibrary = [{
     name: 'The Hobbit',
@@ -25,9 +26,16 @@ addBook.addEventListener('mousedown', function(){
     addBookForm.style.display = 'block';
 })
 
+editBook.addEventListener('mousedown', function(){
+    editBookForm.style.display = 'block';
+
+})
+
 closePopUp.addEventListener('mousedown', function(){
     addBookForm.style.display = 'none';
+    editBookForm.style.display = 'none';
 })
+
 
 function Book(name, author, imageLink, pages, isRead) {
     this.name = name;
@@ -130,4 +138,4 @@ function isValidHttpUrl(string) {         //checks if a string is a valid HTTP U
     }
   
     return url.protocol === "http:" || url.protocol === "https:";
-  }
+}
